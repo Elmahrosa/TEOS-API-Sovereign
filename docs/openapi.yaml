@@ -1,0 +1,560 @@
+openapi: 3.0.3
+info:
+  title: TEOS-API-Sovereign
+  version: 0.1.0-draft
+  description: >
+    TEOS-API-Sovereign is the single sovereign interface for governed access
+    to governance authority, compliance gates, identity intelligence, service activation,
+    and audit transparency within the TEOS / Elmahrosa Sovereign Stack.
+    Governance precedes execution. Human authority precedes automation. Auditability is mandatory.
+  contact:
+    name: Elmahrosa International
+    email: ayman@teosegypt.com
+servers:
+  - url: https://api.teos.example/v1
+    description: Production (example)
+  - url: http://localhost:8080/v1
+    description: Local development (example)
+
+tags:
+  - name: Governance
+    description: Sovereign decision authority, approvals, and policy controls
+  - name: Compliance
+    description: Regulatory checks and enforcement gating
+  - name: Identity
+    description: Sovereign identity intelligence and enforcement actions
+  - name: Services
+    description: Controlled service activation and runtime constraints
+  - name: Audit
+    description: Audit logs, evidence export, and transparency
+
+security:
+  - SovereignBearerAuth: []
+
+paths:
+  /governance/action:
+    post:
+      tags: [Governance]
+      summary: Submit a governed action request
+      description: >
+        Submit an action requiring governance review/approval (e.g., identity approval,
+        policy change, service activation). Returns a governance_id and status.
+      operationId: submitGovernanceAction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GovernanceActionRequest"
+      responses:
+        "202":
+          description: Action request accepted for review
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GovernanceActionResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+  /governance/decision:
+    post:
+      tags: [Governance]
+      summary: Record a governance decision (human/institutional authority)
+      description: >
+        Records an APPROVED/REJECTED decision for a governance action. Intended for
+        authorized governance actors only.
+      operationId: recordGovernanceDecision
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GovernanceDecisionRequest"
+      responses:
+        "200":
+          description: Decision recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GovernanceDecisionResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: Conflict (e.g., already decided, invalid state transition)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+  /compliance/check:
+    post:
+      tags: [Compliance]
+      summary: Run a compliance gate check
+      description: >
+        Evaluates compliance for a given entity and use case under a jurisdiction profile.
+        Returns compliant flag, risk score, flags, and review requirement.
+      operationId: complianceCheck
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ComplianceCheckRequest"
+      responses:
+        "200":
+          description: Compliance evaluation result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ComplianceCheckResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+  /identity/assess:
+    post:
+      tags: [Identity]
+      summary: Assess identity risk and status
+      description: >
+        Produces governed identity status and risk score for a DID in a given context.
+        Output is advisory; final authority remains human and sovereign.
+      operationId: identityAssess
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IdentityAssessRequest"
+      responses:
+        "200":
+          description: Identity assessment result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdentityAssessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+  /identity/revoke:
+    post:
+      tags: [Identity]
+      summary: Revoke an identity (authority-only)
+      description: >
+        Revokes identity access for a DID. Requires explicit authority context.
+        Intended for national identity authority / regulated institutional actors only.
+      operationId: identityRevoke
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IdentityRevokeRequest"
+      responses:
+        "200":
+          description: Identity revocation recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdentityRevokeResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: Conflict (e.g., already revoked, invalid state)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+  /services/activate:
+    post:
+      tags: [Services]
+      summary: Activate a service under governance approval
+      description: >
+        Activates a service (payments, wallet, AI analytics, etc.) under a valid governance approval.
+        Returns runtime constraints applied to that activation.
+      operationId: servicesActivate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServiceActivateRequest"
+      responses:
+        "200":
+          description: Service activation result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceActivateResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: Conflict (e.g., invalid governance_id, not approved)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+  /audit/logs:
+    get:
+      tags: [Audit]
+      summary: Retrieve audit logs for an entity
+      description: >
+        Retrieves audit events for a given entity_id. Audit logs are immutable and exportable.
+        Access is governed and may be restricted by role/jurisdiction.
+      operationId: auditLogsGet
+      parameters:
+        - name: entity_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Entity identifier (e.g., DID, wallet id, service id)
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: Start time (inclusive)
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: End time (exclusive)
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 500
+            default: 100
+      responses:
+        "200":
+          description: Audit log results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuditLogsResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+components:
+  securitySchemes:
+    SovereignBearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Sovereign bearer token issued under governance approval.
+
+  responses:
+    BadRequest:
+      description: Bad request (validation error)
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Unauthorized:
+      description: Unauthorized (missing/invalid token)
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Forbidden:
+      description: Forbidden (insufficient authority)
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+
+  schemas:
+    Error:
+      type: object
+      additionalProperties: false
+      properties:
+        error:
+          type: string
+          example: forbidden
+        message:
+          type: string
+          example: Insufficient authority for this action.
+        request_id:
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+      required: [error, message]
+
+    GovernanceActionRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        action_type:
+          type: string
+          enum: [IDENTITY_APPROVAL, POLICY_CHANGE, SERVICE_ACTIVATION]
+        requestor:
+          type: object
+          additionalProperties: false
+          properties:
+            entity:
+              type: string
+            role:
+              type: string
+              enum: [GOVERNMENT, INSTITUTION, SYSTEM, HUMAN]
+          required: [entity, role]
+        scope:
+          type: string
+          enum: [pilot, national, cross_border]
+        justification:
+          type: string
+        effective_date:
+          type: string
+          format: date
+      required: [action_type, requestor, scope, justification]
+
+    GovernanceActionResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum: [PENDING_REVIEW]
+        governance_id:
+          type: string
+          example: gov_9f31c2
+        next_step:
+          type: string
+          enum: [HUMAN_REVIEW]
+      required: [status, governance_id, next_step]
+
+    GovernanceDecisionRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        governance_id:
+          type: string
+        decision:
+          type: string
+          enum: [APPROVED, REJECTED]
+        authority:
+          type: string
+          example: Ministerial Committee
+        conditions:
+          type: array
+          items:
+            type: string
+      required: [governance_id, decision, authority]
+
+    GovernanceDecisionResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum: [RECORDED]
+        governance_id:
+          type: string
+        decision:
+          type: string
+          enum: [APPROVED, REJECTED]
+        recorded_at:
+          type: string
+          format: date-time
+      required: [status, governance_id, decision, recorded_at]
+
+    ComplianceCheckRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        entity_type:
+          type: string
+          enum: [IDENTITY, WALLET, SERVICE]
+        entity_id:
+          type: string
+        jurisdiction:
+          type: string
+          example: EGYPT
+        use_case:
+          type: string
+          example: DIGITAL_ID_ACCESS
+      required: [entity_type, entity_id, jurisdiction, use_case]
+
+    ComplianceCheckResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        compliant:
+          type: boolean
+        risk_score:
+          type: integer
+          minimum: 0
+          maximum: 100
+        flags:
+          type: array
+          items:
+            type: string
+        review_required:
+          type: boolean
+      required: [compliant, risk_score, flags, review_required]
+
+    IdentityAssessRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        did:
+          type: string
+          example: did:teos:citizen123
+        context:
+          type: string
+          example: CIVIC_SERVICE_ACCESS
+      required: [did, context]
+
+    IdentityAssessResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum: [TRUSTED, WATCHLIST, REVOKED]
+        risk_score:
+          type: integer
+          minimum: 0
+          maximum: 100
+        last_reviewed:
+          type: string
+          format: date
+        authority_override:
+          type: boolean
+      required: [status, risk_score, authority_override]
+
+    IdentityRevokeRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        did:
+          type: string
+        reason:
+          type: string
+        authorized_by:
+          type: string
+          example: National Identity Authority
+      required: [did, reason, authorized_by]
+
+    IdentityRevokeResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum: [REVOKED]
+        did:
+          type: string
+        revoked_at:
+          type: string
+          format: date-time
+      required: [status, did, revoked_at]
+
+    ServiceActivateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        service:
+          type: string
+          enum: [PAYMENT_RAIL, WALLET, AI_ANALYTICS]
+        scope:
+          type: string
+          enum: [PILOT, NATIONAL]
+        approved_governance_id:
+          type: string
+      required: [service, scope, approved_governance_id]
+
+    ServiceActivateResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum: [ACTIVE]
+        constraints:
+          type: array
+          items:
+            type: string
+      required: [status, constraints]
+
+    AuditLogsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        entity_id:
+          type: string
+        events:
+          type: array
+          items:
+            $ref: "#/components/schemas/AuditEvent"
+      required: [entity_id, events]
+
+    AuditEvent:
+      type: object
+      additionalProperties: false
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        action:
+          type: string
+          example: IDENTITY_CHECK
+        actor:
+          type: string
+          enum: [SYSTEM, HUMAN, INSTITUTION, GOVERNMENT]
+        result:
+          type: string
+          example: APPROVED
+      required: [timestamp, action, actor, result]
