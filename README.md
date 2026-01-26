@@ -1,5 +1,13 @@
 # 🌐 TEOS-API-Sovereign | ELMAHROSA
 **Single Governed API & SDK Gateway for TEOS**
+## 🏛️ Constitutional Authority
+
+This repository derives its authority from the
+**International Civic Blockchain Constitution (ICBC)**:
+
+https://github.com/Elmahrosa/International-Civic-Blockchain-Constitution
+
+Any implementation or use must comply with ICBC and TESL.
 
 ---
 
