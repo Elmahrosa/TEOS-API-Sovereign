@@ -1,0 +1,30 @@
+{
+  "schema": "teos.manifest.v1",
+  "name": "TEOS-API-Sovereign",
+  "repo": "Elmahrosa/TEOS-API-Sovereign",
+  "role": "Core",
+  "status": "active",
+  "version": "0.1.0",
+  "authority": {
+    "icbc": "https://github.com/Elmahrosa/International-Civic-Blockchain-Constitution",
+    "tesl_canonical": "https://github.com/Elmahrosa/International-Civic-Blockchain-Constitution/blob/main/LICENSE"
+  },
+  "stewardship": {
+    "teos_forge": "https://github.com/Elmahrosa/TEOS-FORGE",
+    "kernel": "https://github.com/Elmahrosa/elmahrosa-core"
+  },
+  "interfaces": {
+    "provides": ["sovereign.api.gateway", "sdk.entrypoints", "openapi.spec"],
+    "consumes": ["kernel.registry", "governance.policy", "compliance.hooks"]
+  },
+  "compliance": {
+    "jurisdictions": ["EG"],
+    "data_sensitivity": "public",
+    "controls": ["ICBC", "TESL_CANONICAL", "FORGE_STEWARDSHIP", "API_CHANGE_CONTROL"]
+  },
+  "audit": {
+    "events": ["api.released", "spec.updated", "sdk.published"],
+    "evidence_export": { "formats": ["jsonl", "openapi"], "retention_days": 365 }
+  },
+  "contacts": { "owner": "Ayman Seif", "security": "ayman@teosegypt.com" }
+}
