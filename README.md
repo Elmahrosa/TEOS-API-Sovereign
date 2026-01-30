@@ -1,140 +1,146 @@
-# 🌐 TEOS-API-Sovereign | ELMAHROSA
-**Single Governed API & SDK Gateway for TEOS**
-## 🏛️ Constitutional Authority
+<div align="center">
 
-This repository derives its authority from the
-**International Civic Blockchain Constitution (ICBC)**:
+# 🌐 TEOS-API-Sovereign
+![Standing](https://img.shields.io/badge/Standing-Governed%20API%20%26%20SDK%20Gateway-blue?style=for-the-badge)
+![Role](https://img.shields.io/badge/Role-Authorized%20Integration%20Layer-gold?style=for-the-badge)
+![License](https://img.shields.io/badge/License-TESL%20Sovereign-red?style=for-the-badge&labelColor=000000)
+![Position](https://img.shields.io/badge/Chain_Position-%235-black?style=for-the-badge)
+![Stars](https://img.shields.io/github/stars/Elmahrosa/TEOS-API-Sovereign?style=social)
 
-https://github.com/Elmahrosa/International-Civic-Blockchain-Constitution
+</div>
 
-Any implementation or use must comply with ICBC and TESL.
+<div align="center">
 
----
+# Governed API & SDK Gateway of the TEOS Sovereign Stack
 
-## 📍 Repository Standing
+**Law authorizes.**  
+**Governance defines rules.**  
+**Core validates access.**  
+**The API exposes — under control.**
 
-This repository is the **single sovereign interface**
-to the **TEOS / Elmahrosa Sovereign Stack**.
-
-It is the **only authorized API and SDK gateway**
-through which external systems, nations, institutions,
-and developers may interact with TEOS services and execution layers.
-
-All access is **governed, audited, and compliance-bound**.
-
-**Founder & Authority:** Elmahrosa International — TEOS Egypt  
-**Founder:** Ayman Seif
+</div>
 
 ---
 
-## Constitutional Authority (Read First)
+## 🏛️ Repository Standing
 
-All legitimacy and authority derive from the  
-**International Civic Blockchain Constitution**
-(single source of truth):
+**TEOS-API-Sovereign** is the **single governed API and SDK gateway**
+of the TEOS ecosystem.
 
-https://github.com/Elmahrosa/International-Civic-Blockchain-Constitution
+It is the **only authorized interface** through which external systems,
+institutions, partners, or nations may interact with
+TEOS sovereign execution capabilities.
 
-Governance, stewardship, and lifecycle control are anchored in:
+This repository:
+- ❌ Does NOT create authority  
+- ❌ Does NOT execute actions  
+- ❌ Does NOT define governance  
 
-- **TEOS-FORGE — Governance & Stewardship Anchor**  
-  https://github.com/Elmahrosa/TEOS-FORGE
+It exposes **strictly controlled access** to
+**already-authorized and validated execution paths**.
 
-License authority is defined by:
+- **Chain Position:** #5 — Governed API / SDK Gateway  
+- **Authority Source (ICBC):**  
+  https://github.com/Elmahrosa/Teos-International-Civic-Blockchain-Constitution  
+- **Governance Stewardship:**  
+  https://github.com/Elmahrosa/TEOS-FORGE  
+- **Execution Validation:**  
+  https://github.com/Elmahrosa/Elmahrosa-Core  
+- **Execution Kernel:**  
+  https://github.com/Elmahrosa/Teos-Sovereign-System  
 
-- **TEOS Egypt Sovereign License (TESL)**  
-  https://github.com/Elmahrosa/International-Civic-Blockchain-Constitution/blob/main/LICENSE
-
-This repository operates **strictly subordinate**
-to the above authorities.
-
----
-
-## Sovereign API Doctrine
-
-**Born in Egypt for the World**  
-*Built in Egypt. Engineered for Nations. Scaled for the World.*
-
-APIs do not decide.  
-APIs do not govern.  
-APIs do not bypass sovereignty.
-
-This gateway exposes **execution interfaces only**
-after sovereign approval has occurred upstream.
-
-APIs, SDKs, AI, and Web3 systems are **execution instruments** —
-never sources of authority.
+⚠️ **APIs expose authority — they never create it.**
 
 ---
 
-## What This Repository Is
+## 🔗 Authority Chain (Non-Negotiable)
 
-**TEOS-API-Sovereign** provides the **canonical access layer** for TEOS, including:
+```text
+Teos International Civic Blockchain Constitution (ICBC)
+                    ↓
+                TEOS-FORGE
+                    ↓
+             TEOS-Governance
+                    ↓
+            Elmahrosa-Core
+                    ↓
+        Teos-Sovereign-System
+                    ↓
+        TEOS-API-Sovereign  [This Repository]
+                    ↓
+      External Applications / SDKs / Institutions
+````
 
-- **Canonical REST / OpenAPI specifications**
-- **Official governed SDKs** (JavaScript, Python, future languages)
-- **Strict binding to sovereign execution outcomes**
-- **Audit-ready request and response envelopes**
-- **Nation-configurable access and jurisdiction profiles**
-- **Controlled adapters to external chains and national systems**
-
-> No external system may interact with TEOS  
-> without using this gateway.
-
----
-
-## What This Repository Is Not
-
-- Not a governance engine (see **TEOS-Governance**)
-- Not a business logic or decision layer
-- Not a public or permissionless API
-- Not a protocol that overrides law or policy
-
----
-
-## Mandatory Execution Chain
-
-All API requests **must** follow this chain:
-
-**International Civic Blockchain Constitution**  
-→ **TEOS-FORGE**  
-→ **TEOS-Governance**  
-→ **TEOS Egypt Compliance Kit**  
-→ **TEOS AI Guard** (human approval & control)  
-→ **TEOS AI Auditor** (evidence & traceability)  
-→ **Teos Sovereign System** (execution backbone)  
-→ **TEOS-API-Sovereign**  
-→ External Systems / Nations / Partners
-
-Any API access outside this chain is  
+Any API access outside this chain is
 **non-compliant, unauthorized, and invalid**.
 
 ---
 
-## Usage Notice
+## ✅ What This Repository Is
 
-This repository is **not an open developer API**.
+* The **single authorized API gateway** for TEOS systems
+* A **governed SDK surface** for institutional integrations
+* An **access-control and routing layer** enforcing upstream validation
+* An **auditable boundary** between sovereign systems and external apps
 
-Any access, integration, deployment, or SDK usage
-outside TEOS governance and TESL authorization
-is **strictly prohibited**.
+---
 
-AI systems provide **decision-support only**.  
-**Final authority remains human, institutional, and sovereign.**
+## ❌ What This Repository Is Not
+
+* An open or permissionless API
+* A blockchain RPC endpoint
+* A governance or execution engine
+* A consumer-grade developer platform
+
+---
+
+## ⚙️ Core Responsibilities
+
+| Domain             | Responsibility                                 |
+| ------------------ | ---------------------------------------------- |
+| Access Control     | Identity, scope, and authorization checks      |
+| Routing            | Forward validated requests to execution kernel |
+| Policy Enforcement | Apply governance and compliance constraints    |
+| Observability      | Emit logs and audit evidence                   |
+| Containment        | Revoke or block access on upstream signal      |
+
+> No request reaches execution without validation by **Elmahrosa-Core**
+> and enforcement by **Teos-Sovereign-System**.
+
+---
+
+## ⚡ Quickstart (Integration Only)
+
+1. Obtain institutional authorization under **TESL**
+2. Receive scoped API credentials
+3. Submit requests via governed endpoints
+4. Requests are validated, executed, and audited
+
+> This repository is **not a sandbox API**.
 
 ---
 
 ## ⚖️ License & Authority
 
-This repository is governed **exclusively** by the  
+This repository is governed **exclusively** by the
 **TEOS Egypt Sovereign License (TESL)**.
 
-- **Canonical License (single source of truth):**  
-  https://github.com/Elmahrosa/International-Civic-Blockchain-Constitution/blob/main/LICENSE
+* **Canonical License (single source of truth):**
+  [https://github.com/Elmahrosa/Teos-International-Civic-Blockchain-Constitution/blob/main/LICENSE.md](https://github.com/Elmahrosa/Teos-International-Civic-Blockchain-Constitution/blob/main/LICENSE.md)
 
-- **Status:** Proprietary • Source-Available  
-- **Authority:** Elmahrosa International  
+Commercial, institutional, or production use requires
+**explicit written approval** from Elmahrosa International.
 
-📧 ayman@teosegypt.com
+> **AI Disclaimer:**
+> AI may assist monitoring or traffic management.
+> AI never authorizes access or execution.
 
-🇪🇬 *Sovereign APIs forged in Egypt — governed by nations worldwide.*
+---
+
+<div align="center">
+
+**Authority:** Elmahrosa International
+📧 [ayman@teosegypt.com](mailto:ayman@teosegypt.com)
+🌐 [https://teosegypt.com](https://teosegypt.com)
+
+🇪🇬 *A governed API authored in Egypt — trusted by institutions worldwide.*
