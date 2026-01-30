@@ -1,13 +1,32 @@
-name: CI
+name: TEOS API Sovereign — CI
 
 on:
   push:
+    branches: [ main ]
   pull_request:
 
 jobs:
-  validate:
+  governance-checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: echo "CI OK"
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      - name: Validate required governance files
+        run: |
+          test -f README.md
+          test -f LICENSE.md || test -f LICENSE
+          test -f SECURITY.md
+          echo "✅ Governance files present"
+
+      - name: Markdown lint (basic)
+        uses: DavidAnson/markdownlint-cli2-action@v14
+        with:
+          globs: |
+            **/*.md
+
+      - name: Prevent unauthorized forks claiming authority
+        run: |
+          if grep -R "sovereign authority" -n . | grep -v README.md; then
+            echo "⚠️ Check authority claims"
+          fi
